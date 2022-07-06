@@ -257,11 +257,9 @@ module JSONAPI
         # Fetch the name of the new class based on the incoming polymorphic
         # "type" value. This will fail if there is no associated resource for the
         # incoming "type" value so this shouldn't leak constants
-        related_record_class_name = source_resource
-          .send(:_model_class_name, params[:key_type])
 
         # Fetch the underlying Resource class for the new record to-be-associated
-        related_resource_klass = @resource_klass.resource_for(related_record_class_name)
+        related_resource_klass =  source_resource.class.resource_klass_for(params[:key_type].to_s.classify)
 
         new_related_resource = related_resource_klass
           .find_by_key(
