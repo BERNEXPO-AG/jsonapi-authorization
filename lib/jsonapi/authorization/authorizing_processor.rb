@@ -325,7 +325,7 @@ module JSONAPI
               when nil
                 nil
               when Hash # polymorphic relationship
-                resource_class = @resource_klass.resource_for(assoc_value[:type].to_s)
+                resource_class = @resource_klass.resource_klass_for(assoc_value[:type].to_s)
                 resource_class.find_by_key(assoc_value[:id], context: context)._model
               when Array
                 resource_class = resource_class_for_relationship(assoc_name)

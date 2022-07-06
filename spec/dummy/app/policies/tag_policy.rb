@@ -1,7 +1,8 @@
 class TagPolicy
   class Scope < Struct.new(:user, :scope)
     def resolve
-      raise NotImplementedError
+      # TODO: Not clear why this was returning not implemented
+      return scope
     end
   end
 
